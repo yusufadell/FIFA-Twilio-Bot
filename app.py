@@ -19,9 +19,12 @@ countries = ['KOR', 'PAN', 'MEX', 'ENG', 'COL', 'JPN', 'POL', 'SEN',
 
 app = Flask(__name__)
 
-to_zone = tz.gettz('Africa/Cairo') # Set timezone to Cairo for better time display in SMS
+# Set timezone to Cairo for better time display in SMS
+to_zone = tz.gettz('Africa/Cairo')
 
-#  / route acccepts POST requests
+#  / route acccepts POST requests and returns a TwiML response
+
+
 @app.route('/', methods=['POST'])
 def sms():
     """Respond to incoming messages with a friendly SMS."""
@@ -85,6 +88,7 @@ def sms():
         else:
             # Create a response
             resp.message("Sorry, we couldn't get the data")
-            
+
+
 if __name__ == "__main__":
-    app.run(debug=True)    
+    app.run(debug=True)
